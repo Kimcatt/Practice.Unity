@@ -16,7 +16,9 @@ namespace Practice.Unity.Ioc
                 Name = "Kimcatt",
                 Birthday = DateTime.Now
             };
-            
+
+            ContainerBootstrapper.RegisterTypesWithCode(new global::Unity.UnityContainer());
+            Console.ReadKey();
         }
     }
 }

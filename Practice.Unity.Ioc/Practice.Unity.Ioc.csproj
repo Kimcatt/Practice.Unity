@@ -82,11 +82,26 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Unity.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sender\" />
     <Folder Include="Service\" />
     <Folder Include="Student\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Practice.Unity.Calculator\Practice.Unity.Calculator.csproj">
+      <Project>{3260616f-4e76-4bfc-b265-9df5a2774446}</Project>
+      <Name>Practice.Unity.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practice.Unity.Sender\Practice.Unity.Sender.csproj">
+      <Project>{1523E444-691B-4E6A-8C3D-92A26440D4CE}</Project>
+      <Name>Practice.Unity.Sender</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Practice.Unity.Utility\Practice.Unity.Utility.csproj">
+      <Project>{f2568beb-6539-4db2-863f-f6b2e2557b40}</Project>
+      <Name>Practice.Unity.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
