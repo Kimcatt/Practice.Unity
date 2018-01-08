@@ -13,7 +13,7 @@ namespace Practice.Unity.Calculator
         private void TryParse(string expr, out double operandL, out char op, out double operandR)
         {
             int index = 0;
-            while (index < expr.Length && char.IsDigit(expr[index]))
+            while (index < expr.Length && (char.IsDigit(expr[index]) || char.IsWhiteSpace(expr[index])))
             {
                 index++;
             }
@@ -39,12 +39,19 @@ namespace Practice.Unity.Calculator
             }
         }
 
-        public double Calculator(string expr)
+        public double Calculate(string expr)
         {
             double operandL, operandR;
             char op;
             TryParse(expr, out operandL, out op, out operandR);
-            return Calculate(operandL, op, operandR);
+            double r = Calculate(operandL, op, operandR);
+            Console.WriteLine(string.Format("{0} = {1}", expr, r));
+            return r;
+        }
+
+        public SimpleCalculator()
+        {
+            Console.WriteLine(string.Format("{0} instance #{1} is contructing", nameof(SimpleCalculator), this.GetHashCode()));
         }
     }
 }

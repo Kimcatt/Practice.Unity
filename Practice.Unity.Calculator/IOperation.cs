@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Practice.Unity.Calculator
 {
-    public interface ICalculator<T> where T: struct
+    public interface IOperation
     {
-        T Calculate(string expr);
-    }
-
-    public interface ICalculator
-    {
-        double Calculate(string expr);
+        int Operate(int leftOperand, int rightOperand);
     }
 }
