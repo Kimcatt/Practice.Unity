@@ -12,5 +12,10 @@ namespace Practice.Unity.Calculator
         {
             return leftOperand - rightOperand;
         }
+
+        public Subtract()
+        {
+            Console.WriteLine(string.Format("{0} instance #{1} is constructing...", nameof(Subtract), this.GetHashCode()));
+        }
     }
 }

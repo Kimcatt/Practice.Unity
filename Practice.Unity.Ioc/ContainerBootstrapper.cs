@@ -80,5 +80,34 @@ namespace Practice.Unity.Ioc
             }
             Console.WriteLine();
         }
+
+        public static void LaunchInjectionTest(IUnityContainer container)
+        {
+            ConsoleHelper.WriteGreenLine("Running Injection Test...");
+            container.RegisterType<IOperation, Add>("add", new global::Unity.Lifetime.SingletonLifetimeManager());
+            container.RegisterType<IOperation, Subtract>("sub", new global::Unity.Lifetime.SingletonLifetimeManager());
+            container.RegisterType<IOperation, Multiply>("mul", new global::Unity.Lifetime.SingletonLifetimeManager());
+            container.RegisterType<IOperation, Divide>("div", new global::Unity.Lifetime.SingletonLifetimeManager());
+            //container.RegisterType<IOperation, Add>(new global::Unity.Lifetime.SingletonLifetimeManager());
+            //container.RegisterType<IOperation, Subtract>(new global::Unity.Lifetime.SingletonLifetimeManager());
+            //container.RegisterType<IOperation, Multiply>(new global::Unity.Lifetime.SingletonLifetimeManager());
+            //container.RegisterType<IOperation, Divide>(new global::Unity.Lifetime.SingletonLifetimeManager());
+            //container.ResolveAll<IOperation>();
+            //container.RegisterType<ICalculator, SimpleCalculator>(new global::Unity.Injection.InjectionConstructor(typeof(IEnumerable<IOperation>)));
+            container.RegisterType<ICalculator, SimpleCalculator>(new global::Unity.Injection.InjectionConstructor());
+            var calculator = container.Resolve<ICalculator>();
+            Console.WriteLine(string.Format("ICalculator instance #{0} is running...", calculator.GetHashCode()));
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    calculator.Calculate(string.Format("{0} {1} {2}", RandomHelper.NextInt(0, 10), "+-*/"[RandomHelper.NextInt(0, 4)], RandomHelper.NextInt(0, 10)));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
     }
 }

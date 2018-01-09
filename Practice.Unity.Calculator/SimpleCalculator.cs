@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using global::Unity.Injection;
+using Unity.Attributes;
 
 namespace Practice.Unity.Calculator
 {
     public class SimpleCalculator : ICalculator
     {
-        
+        private IEnumerable<IOperation> operations;
 
         private void TryParse(string expr, out double operandL, out char op, out double operandR)
         {
@@ -53,5 +55,29 @@ namespace Practice.Unity.Calculator
         {
             Console.WriteLine(string.Format("{0} instance #{1} is contructing", nameof(SimpleCalculator), this.GetHashCode()));
         }
+
+        //[Dependency]
+        //public IEnumerable<IOperation> Operations
+        //{
+        //    get { return operations; }
+        //    set { operations = value; Console.WriteLine("Property injection with {0} operations", value?.Count()); }
+        //}
+
+        [InjectionMethod]
+        public void LoadOperations(IEnumerable<IOperation> operations)
+        {
+            this.operations = operations;
+            Console.WriteLine("Method injection with {0} operations", operations?.Count());
+        }
+
+        public SimpleCalculator(IEnumerable<IOperation> operations)
+        {
+            this.operations = operations;
+            Console.WriteLine(string.Format("{0} instance #{1} is constructiong with parameter...", nameof(SimpleCalculator), this.GetHashCode()));
+            Console.WriteLine(string.Format("{0} operations are injected...", operations?.Count()));
+        }
+
+
+
     }
 }
