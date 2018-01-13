@@ -27,13 +27,25 @@ namespace Practice.Unity.Ioc
             //命名注册
             container.RegisterType<ISender, TelegraphSender>("tel");
 
+            Console.WriteLine("解析默认对象");
             //解析默认对象
             ISender sender = container.Resolve<ISender>();
             sender.Send();
 
+            Console.WriteLine("解析命名对象");
             //指定命名解析对象
             ISender namedSender = container.Resolve<ISender>("tel");
             namedSender.Send();
+
+            //注册实例
+            Console.WriteLine("注册实例");
+            container.RegisterInstance(typeof(SimpleCalculator), new SimpleCalculator());
+            //解析实例
+            Console.WriteLine("解析实例");
+            var obj = container.Resolve<SimpleCalculator>();
+            //使用实例
+            Console.WriteLine("使用实例");
+            obj.Calculate("10 + 10");
 
             //获取容器中所有ISender的注册的已命名对象
             IEnumerable<ISender> classList = container.ResolveAll<ISender>();

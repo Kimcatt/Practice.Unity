@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice.Unity.Ioc", "Pract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice.Unity.Utility", "Practice.Unity.Utility\Practice.Unity.Utility.csproj", "{F2568BEB-6539-4DB2-863F-F6B2E2557B40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice.Unity.Aop", "Practice.Unity.Aop\Practice.Unity.Aop.csproj", "{8EAB0CC3-6601-4C78-9184-58C81659FF96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practice.Unity.Storage", "Practice.Unity.Storage\Practice.Unity.Storage.csproj", "{D032EB8F-CD0E-4255-BCBB-CA82C7671EB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{F2568BEB-6539-4DB2-863F-F6B2E2557B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2568BEB-6539-4DB2-863F-F6B2E2557B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2568BEB-6539-4DB2-863F-F6B2E2557B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EAB0CC3-6601-4C78-9184-58C81659FF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EAB0CC3-6601-4C78-9184-58C81659FF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EAB0CC3-6601-4C78-9184-58C81659FF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EAB0CC3-6601-4C78-9184-58C81659FF96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D032EB8F-CD0E-4255-BCBB-CA82C7671EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D032EB8F-CD0E-4255-BCBB-CA82C7671EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D032EB8F-CD0E-4255-BCBB-CA82C7671EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D032EB8F-CD0E-4255-BCBB-CA82C7671EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

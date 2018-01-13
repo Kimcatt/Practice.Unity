@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{463C641F-2757-4535-838E-BBDEA8BBA3C3}</ProjectGuid>
+    <ProjectGuid>{8EAB0CC3-6601-4C78-9184-58C81659FF96}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Practice.Unity.Ioc</RootNamespace>
-    <AssemblyName>Practice.Unity.Ioc</AssemblyName>
+    <RootNamespace>Practice.Unity.Aop</RootNamespace>
+    <AssemblyName>Practice.Unity.Aop</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,7 +37,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,27 +74,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attribute\HandlerAttribute\ConnectionStringCachingCallHandlerAttribute.cs" />
+    <Compile Include="Attribute\HandlerAttribute\LoggingCallHandlerAttribute.cs" />
+    <Compile Include="CallHandler\ConnectionStringCachingCallHandler.cs" />
+    <Compile Include="CallHandler\LoggingCallHandler.cs" />
+    <Compile Include="ConnectionStringStorageWithAttributes.cs" />
     <Compile Include="ContainerBootstrapper.cs" />
-    <Compile Include="Model\AccountInfo.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="InterceptionBehavior\CachingInterceptionBehavior.cs" />
+    <Compile Include="InterceptionBehavior\LoggerSpecificInterceptionBehavior.cs" />
+    <Compile Include="InterceptionBehavior\LoggingInterceptionBehavior.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="Unity.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Practice.Unity.Calculator\Practice.Unity.Calculator.csproj">
-      <Project>{3260616f-4e76-4bfc-b265-9df5a2774446}</Project>
-      <Name>Practice.Unity.Calculator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Practice.Unity.Sender\Practice.Unity.Sender.csproj">
-      <Project>{1523E444-691B-4E6A-8C3D-92A26440D4CE}</Project>
-      <Name>Practice.Unity.Sender</Name>
+    <ProjectReference Include="..\Practice.Unity.Storage\Practice.Unity.Storage.csproj">
+      <Project>{d032eb8f-cd0e-4255-bcbb-ca82c7671eb5}</Project>
+      <Name>Practice.Unity.Storage</Name>
     </ProjectReference>
     <ProjectReference Include="..\Practice.Unity.Utility\Practice.Unity.Utility.csproj">
       <Project>{f2568beb-6539-4db2-863f-f6b2e2557b40}</Project>
