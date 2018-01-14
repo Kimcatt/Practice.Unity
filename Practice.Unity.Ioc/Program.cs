@@ -20,6 +20,7 @@ namespace Practice.Unity.Ioc
             ContainerBootstrapper.RegisterTypesWithCode(new global::Unity.UnityContainer());
             ContainerBootstrapper.RegisterTypesWithConfiguration(new global::Unity.UnityContainer());
             ContainerBootstrapper.LaunchInjectionTest(new global::Unity.UnityContainer());
+            ContainerBootstrapper.RegisterTypesWithConvention(new global::Unity.UnityContainer());
             Console.ReadKey();
         }
     }

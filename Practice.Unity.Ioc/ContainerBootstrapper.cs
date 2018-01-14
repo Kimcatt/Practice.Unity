@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity;
+using Unity.Configuration;
 using System.Diagnostics;
 using Practice.Unity.Utility;
 using Practice.Unity.Sender;
 using System.Configuration;
 using Microsoft.Practices.Unity.Configuration;
 using Practice.Unity.Calculator;
+using Unity.RegistrationByConvention;
 
 namespace Practice.Unity.Ioc
 {
@@ -107,6 +109,46 @@ namespace Practice.Unity.Ioc
             //container.ResolveAll<IOperation>();
             //container.RegisterType<ICalculator, SimpleCalculator>(new global::Unity.Injection.InjectionConstructor(typeof(IEnumerable<IOperation>)));
             container.RegisterType<ICalculator, SimpleCalculator>(new global::Unity.Injection.InjectionConstructor());
+            var calculator = container.Resolve<ICalculator>();
+            Console.WriteLine(string.Format("ICalculator instance #{0} is running...", calculator.GetHashCode()));
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    calculator.Calculate(string.Format("{0} {1} {2}", RandomHelper.NextInt(0, 10), "+-*/"[RandomHelper.NextInt(0, 4)], RandomHelper.NextInt(0, 10)));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+        public static void RegisterTypesWithConvention(IUnityContainer container)
+        {
+            ConsoleHelper.WriteGreenLine("Register types with convention...");
+            //using Unity.RegistrationByConvention
+            //默认注册，无命名
+            container.RegisterTypes(
+                AllClasses.FromLoadedAssemblies().Where(t => t.Namespace.StartsWith("Practice.Unity.Calculator")),
+                WithMappings.FromAllInterfaces,
+                WithName.Default,
+                WithLifetime.ContainerControlled,
+                overwriteExistingMappings: true
+            );
+            //默认注册，以类型名称命名
+            container.RegisterTypes(
+                AllClasses.FromLoadedAssemblies().Where(t => t.Namespace.StartsWith("Practice.Unity.Calculator")),
+                WithMappings.FromAllInterfaces,
+                WithName.TypeName,
+                WithLifetime.ContainerControlled,
+                overwriteExistingMappings: false
+            );
+            foreach (var item in container.Registrations)
+            {
+                var name = string.IsNullOrWhiteSpace(item.Name) ? "null" : item.Name;
+                Console.WriteLine(string.Format("+ {0} : {1} -> {2}", name, item.RegisteredType, item.MappedToType));
+            }
             var calculator = container.Resolve<ICalculator>();
             Console.WriteLine(string.Format("ICalculator instance #{0} is running...", calculator.GetHashCode()));
             for (int i = 0; i < 10; i++)
